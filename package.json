@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@sequelize/core": "^7.0.0-alpha.42"
+    "@sequelize/core": "^7.0.0-alpha.42",
+    "express": "^5.1.0"
   }
 }
