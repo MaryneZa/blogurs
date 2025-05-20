@@ -1,17 +1,21 @@
 require('dotenv').config()
-const express = require('express')
 const app = require('./app')
 const sequelize = require('./config/database')
-const PORT = process.env.PORT
-(async () => {
+const {User, Post} = require('./models') // this triggers the model definitions 
+
+async function setup() {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
-        app.listen(PORT, () => `Server listening on Port : ${PORT}`)
+        await sequelize.sync({ force: true });
+        console.log('All models were synchronized successfully.');
+        app.listen(process.env.PORT, () => console.log(`Server listening on Port : ${process.env.PORT}`))
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
-})();
+};
+
+setup();
 
 
 

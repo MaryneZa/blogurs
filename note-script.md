@@ -8,3 +8,6 @@
 > - `npx sequelize-cli db:seed:all`
 > - `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
 
+> #### Note
+> - Better try : https://github.com/sequelize/umzug
+

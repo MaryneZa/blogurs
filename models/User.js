@@ -1,15 +1,15 @@
 const {DataTypes} = require('@sequelize/core')
-const {sequelize} = require('../config/database')
+const sequelize = require('../config/database')
 
 const User = sequelize.define('User', 
     {
     username: {
         type: DataTypes.STRING,
-        PrimaryKey: true
+        primaryKey: true
     },
     password: {
         type: DataTypes.STRING,
-        AllowNull: false
+        allowNull: false
     }
     }, 
     {

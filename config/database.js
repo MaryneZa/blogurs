@@ -8,6 +8,7 @@ const sequelize = new Sequelize({
   password: config.password,
   host: config.host,
   port: config.port,
+  logging: console.log,
 });
 
 module.exports = sequelize

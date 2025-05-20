@@ -1,14 +1,15 @@
 const {DataTypes} = require('@sequelize/core')
-const {sequelize} = require('../config/database')
+const sequelize = require('../config/database')
 
-const Post = sequelize.define("Post", {
+const Post = sequelize.define('Post', {
     id: {
         type: DataTypes.UUID,
-        PrimaryKey: true
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4, // helpful for auto-generating UUIDs
     },
-    Title: {
+    title: {
         type: DataTypes.STRING,
-        AllowNull: false
+        allowNull: false
     }
 })
 
