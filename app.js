@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const userRouters = require('./routes/userRoutes')
-const postRouters = require('./routes/postRoutes')
+const {userRouters, postRouters} = require('./routes')
+
 
 app.use(express.json())
 app.use('/api/users', userRouters)
