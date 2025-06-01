@@ -1,5 +1,16 @@
-const {Post} = require('../models')
+const { Post, User } = require('../models')
 
-exports.Create = (title, username) => Post.create({title: title, username: username});
+exports.create = (title, username) => Post.create({ title: title, username: username });
 
-exports.FindByUsername = (username) => Post.findAll({where: {username: username}, order: [['createdAt', 'DESC']],});
+exports.findByUsername = (username) => Post.findAll({
+  where: { username },
+  include: [
+    {
+      model: User, // ✅ Use model instead of association
+      attributes: { exclude: ['password'] },
+    },
+  ],
+  order: [['createdAt', 'DESC']],
+});
+
+exports.getAll = () => Post.findAll({ order: [['createdAt', 'DESC']] });

@@ -1,23 +1,41 @@
-const authService = require('../services/auth.service')
+const authService = require('../services/auth.services')
 
 
-exports.SignUp = async (req, res) => {
+exports.signup = async (req, res) => {
     try {
-        const {username, password} = req.body
-        await authService.SignUp(username, password)
-        res.status(200).json({message: "success"})
+        const { username, password } = req.body
+        await authService.signup(username, password)
+        res.status(200).json({ message: "success" })
     } catch (error) {
-        res.status(500).json({error: error.message})
+        res.status(500).json({ error: error.message })
     }
 }
 
-exports.Login = async (req, res) => {
+exports.login = async (req, res) => {
     try {
-        const {username, password} = req.body
-        const token = await authService.Login(username, password)
-        res.status(200).json({message: "Login success !", token: token})
+        const { username, password } = req.body
+        const token = await authService.login(username, password)
+        res.cookie("token", token, {
+            maxAge: 60 * 60 * 1000,
+            secure: true,
+            httpOnly: true,
+            sameSite: "lax",
+        });
+        res.status(200).json({ message: "Login success !" })
     } catch (error) {
-        console.error('Signup error:', err);
-        res.status(500).json({error: error.message})
+        res.status(500).json({ error: error.message })
+    }
+}
+
+exports.logout = async (req,res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax"
+        })
+        res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+        res.status(500).json({ error: error.message })
     }
 }

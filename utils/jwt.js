@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken');
 
-exports.CreateToken = (username) => {
+exports.createToken = (username) => {
     try {
         const token = jwt.sign({
             username: username
@@ -12,7 +12,7 @@ exports.CreateToken = (username) => {
     }
 }
 
-exports.VerifyToken = (token) => {
+exports.verifyToken = (token) => {
     try {
         const decode = jwt.verify(token, process.env.JWT_TOKEN);
         return decode
