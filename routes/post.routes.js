@@ -6,6 +6,7 @@ router.post("/create", postController.createPost)
 router.get("/all-username/:username", postController.getPostByUsername)
 router.get("/my-post", postController.getPost)
 router.get("/all-post", postController.getAllPost)
+router.patch("/edit", postController.editPost)
 
 
 

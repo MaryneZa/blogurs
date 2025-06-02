@@ -43,3 +43,14 @@ exports.getAllPost = async (req, res) => {
         res.status(500).json({error: error.message})
     }
 }
+
+exports.editPost = async (req, res) => {
+    try{
+        const {id, title} = req.body
+        const username = req.username
+        await postService.edit(id, title, username)
+        res.status(200).json({message: 'edit successful'})
+    } catch (error){
+        res.status(500).json({error: error.message})
+    }
+}
